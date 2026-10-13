@@ -18,17 +18,17 @@
 
     <style>
         /* ==========================================
-           1. VARIÁVEIS DE DESIGN & RESET
+           1. VARIÁVEIS DE DESIGN & RESET (MODO CLARO)
            ========================================== */
         :root {
-            --bg-dark: #0f0f10;
-            --bg-card: #18181b;
-            --bg-surface: #202025;
-            --accent-gold: #d4af37;
-            --accent-gold-hover: #e6c555;
-            --text-light: #f4f4f5;
-            --text-muted: #a1a1aa;
-            --border-color: #27272a;
+            --bg-dark: #ECECE3;            /* Off-white / Creme suave solicitado */
+            --bg-card: #F7F6F0;            /* Tom gelo levemente destacado para cartões */
+            --bg-surface: #E8E6DB;         /* Tom neutro fosco para superfícies */
+            --accent-gold: #C5A55D;        /* Dourado escovado elegante */
+            --accent-gold-hover: #A88B48;  /* Dourado mais denso para hover */
+            --text-light: #2D2E2D;        /* Grafite escuro para alta legibilidade */
+            --text-muted: #5C5E5C;        /* Cinza intermediário para subtítulos */
+            --border-color: #DEDDCF;      /* Borda sutil em tom gelo texturizado */
             --whatsapp-green: #25d366;
             --whatsapp-hover: #20ba5a;
             
@@ -61,6 +61,12 @@
             color: inherit;
         }
 
+        /* Classe utilitária para preservar a grafia exata de coneXconfi sem forçar maiúsculas */
+        .brand-fix {
+            font-family: var(--font-sans) !important;
+            text-transform: none !important;
+        }
+
         /* ==========================================
            2. CABEÇALHO & NAVEGAÇÃO
            ========================================== */
@@ -70,7 +76,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(15, 15, 16, 0.9);
+            background: rgba(236, 236, 227, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
         }
@@ -127,18 +133,19 @@
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--accent-gold), #b8962e);
-            color: #000 !important;
+            background: linear-gradient(135deg, var(--accent-gold), #a88b48);
+            color: #FFFFFF !important;
             padding: 0.6rem 1.2rem;
             border-radius: 6px;
             font-weight: 600 !important;
             transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(197, 165, 93, 0.25);
         }
 
         .nav-cta:hover {
             background: var(--accent-gold-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 6px 18px rgba(197, 165, 93, 0.35);
         }
 
         .mobile-toggle {
@@ -167,9 +174,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--accent-gold);
+            background: var(--bg-surface);
+            border: 1px solid rgba(197, 165, 93, 0.4);
+            color: var(--accent-gold-hover);
             padding: 0.4rem 1rem;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -250,7 +257,7 @@
             padding: 2rem;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             text-align: center;
             position: relative;
         }
@@ -259,7 +266,7 @@
             content: '';
             position: absolute;
             inset: -1px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), transparent);
+            background: linear-gradient(135deg, rgba(197, 165, 93, 0.4), transparent);
             border-radius: 17px;
             z-index: -1;
         }
@@ -269,7 +276,7 @@
             max-width: 280px;
             height: auto;
             margin: 0 auto 1.5rem;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
         }
 
         .hero-card-stats {
@@ -317,7 +324,7 @@
         }
 
         .section-header .tag {
-            color: var(--accent-gold);
+            color: var(--accent-gold-hover);
             font-weight: 600;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -375,18 +382,20 @@
             padding: 2.5rem 1.8rem;
             transition: var(--transition);
             position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         .pillar-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(197, 165, 93, 0.12);
         }
 
         .pillar-icon {
             width: 60px;
             height: 60px;
-            background: rgba(212, 175, 55, 0.1);
+            background: var(--bg-surface);
+            border: 1px solid rgba(197, 165, 93, 0.3);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -452,7 +461,8 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: var(--border-color);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -474,7 +484,7 @@
            7. RODAPÉ E CONTATO
            ========================================== */
         footer {
-            background: #080809;
+            background: var(--bg-surface);
             border-top: 1px solid var(--border-color);
             padding: 80px 1.5rem 30px;
         }
@@ -558,7 +568,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             z-index: 999;
             transition: var(--transition);
         }
@@ -633,12 +643,12 @@
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
+    <!-- CABEÇALHO (1º Ponto corrigido com .brand-fix) -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo-container">
                 <img src="input_file_0.png" alt="coneXconfi Logo" class="logo-img">
-                <span class="brand-name">cone<span>X</span>confi</span>
+                <span class="brand-name brand-fix">cone<span>X</span>confi</span>
             </a>
 
             <button class="mobile-toggle" id="mobileToggle">
@@ -720,12 +730,12 @@
         </div>
     </section>
 
-    <!-- PILARES -->
+    <!-- PILARES (2º Ponto corrigido com .brand-fix) -->
     <section class="section-padding" id="pilares">
         <div class="container">
             <div class="section-header">
                 <span class="tag">Nossos Pilares</span>
-                <h2>Fundamentos da coneXconfi</h2>
+                <h2 class="brand-fix" style="font-family: var(--font-sans); font-size: 2.3rem;">Fundamentos da coneXconfi</h2>
             </div>
 
             <div class="pillars-grid">
@@ -815,14 +825,14 @@
         </div>
     </section>
 
-    <!-- RODAPÉ -->
+    <!-- RODAPÉ (3º Ponto corrigido com .brand-fix) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo-container">
                         <img src="input_file_0.png" alt="coneXconfi Logo" class="logo-img">
-                        <span class="brand-name">cone<span>X</span>confi</span>
+                        <span class="brand-name brand-fix">cone<span>X</span>confi</span>
                     </a>
                     <p>Construindo conexões de confiança e impulsionando negócios através da credibilidade e prestação de serviços de excelência.</p>
                 </div>

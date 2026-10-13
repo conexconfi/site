@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coneXconfi | Conexão de Confiança</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="input_file_0.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. VARIÁVEIS DE DESIGN & RESET (MODO CLARO)
+           ========================================== */
+        :root {
+            --bg-dark: #ECECE3;            /* Off-white / Creme suave solicitado */
+            --bg-card: #F7F6F0;            /* Tom gelo levemente destacado para cartões */
+            --bg-surface: #E8E6DB;         /* Tom neutro fosco para superfícies */
+            --accent-gold: #C5A55D;        /* Dourado escovado elegante */
+            --accent-gold-hover: #A88B48;  /* Dourado mais denso para hover */
+            --text-light: #2D2E2D;        /* Grafite escuro para alta legibilidade */
+            --text-muted: #5C5E5C;        /* Cinza intermediário para subtítulos */
+            --border-color: #DEDDCF;      /* Borda sutil em tom gelo texturizado */
+            --whatsapp-green: #25d366;
+            --whatsapp-hover: #20ba5a;
+            
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Classe utilitária para preservar a grafia exata de coneXconfi sem forçar maiúsculas */
+        .brand-fix {
+            font-family: var(--font-sans) !important;
+            text-transform: none !important;
+        }
+
+        /* Padroniza a cor do X dourado em qualquer menção */
+        .brand-fix span, .brand-name span {
+            color: var(--accent-gold);
+        }
+
+        /* ==========================================
+           2. CABEÇALHO & NAVEGAÇÃO
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(236, 236, 227, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .brand-name span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-gold), #a88b48);
+            color: #FFFFFF !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(197, 165, 93, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(197, 165, 93, 0.35);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            padding: 180px 1.5rem 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-surface);
+            border: 1px solid rgba(197, 165, 93, 0.4);
+            color: var(--accent-gold-hover);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size:

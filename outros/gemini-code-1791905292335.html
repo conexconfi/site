@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coneXconfi | Conexão de Confiança</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="input_file_0.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. VARIÁVEIS DE DESIGN & RESET (MODO CLARO - GELO / OFF-WHITE / DOURADO)
+           ========================================== */
+        :root {
+            --bg-dark: #ECECE3;            /* Off-White / Creme suave para o fundo geral */
+            --bg-card: #F7F6F0;            /* Gelo/Off-White elevado para cartões e blocos */
+            --bg-surface: #E8E6DB;         /* Tom neutro fosco texturizado para superfícies */
+            --accent-gold: #C5A55D;        /* Dourado escovado refinado */
+            --accent-gold-hover: #A88B48;  /* Dourado em tom mais denso para hover */
+            --text-light: #2D2E2D;        /* Grafite escuro para alta legibilidade dos títulos/textos */
+            --text-muted: #5C5E5C;        /* Cinza chumbo/intermediário para subtítulos e textos secundários */
+            --border-color: #DEDDCF;      /* Borda sutil tom gelo texturizado */
+            --whatsapp-green: #25d366;
+            --whatsapp-hover: #20ba5a;
+            
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           2. CABEÇALHO & NAVEGAÇÃO
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(236, 236, 227, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .brand-name span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-gold), #a88b48);
+            color: #FFFFFF !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(197, 165, 93, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(197, 165, 93, 0.35);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            padding: 180px 1.5rem 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-surface);
+            border: 1px solid rgba(197, 165, 93, 0.4);
+            color: var(--accent-gold-hover);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .hero-title span {
+            color: var(--accent-gold);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--whatsapp-green);
+            color: #fff;
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--whatsapp-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(197, 165, 93, 0.4), transparent);
+            border-radius: 17px;
+            z-index: -1;
+        }
+
+        .main-logo-display {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item h4 {
+            font-family: var(--font-serif);
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           4. ESSÊNCIA & SOBRE A EMPRESA
+           ========================================== */
+        .section-padding {
+            padding: 100px 1.5rem;
+        }
+
+        .about-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header .tag {
+            color: var(--accent-gold-hover);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.3rem;
+            color: var(--text-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: var(--bg-surface);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 2rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ==========================================
+           5. PILARES DE ATUAÇÃO
+           ========================================== */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem 1.8rem;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 12px 30px rgba(197, 165, 93, 0.12);
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-surface);
+            border: 1px solid rgba(197, 165, 93, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .pillar-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           6. PROVA SOCIAL / DEPOIMENTOS
+           ========================================== */
+        .testimonials-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .testimonial-rating {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .author-details h4 {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .author-details span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           7. RODAPÉ E CONTATO
+           ========================================== */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 80px 1.5rem 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            max-width: 320px;
+        }
+
+        .footer-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--accent-gold);
+            margin-top: 0.2rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp-green);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: var(--whatsapp-hover);
+        }
+
+        /* ==========================================
+           8. RESPONSIVIDADE
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 140px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-container">
+                <img src="input_file_0.png" alt="coneXconfi Logo" class="logo-img">
+                <span class="brand-name">cone<span>X</span>confi</span>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#essencia">A Essência</a></li>
+                <li><a href="#pilares">Pilares</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="https://wa.me/5521959067974" target="_blank" class="nav-cta">Falar com Consultor</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-shield-halved"></i> Conexão de Confiança
+            </div>
+            <h1 class="hero-title">
+                Fortalecendo <span>Empreendedores</span> através de Parcerias Reais.
+            </h1>
+            <p class="hero-description">
+                Construímos pontes sólidas entre a sua empresa e o seu público. Credibilidade, conexões genuínas e excelência em prestação de serviços no Rio de Janeiro.
+            </p>
+            <div class="hero-actions">
+                <a href="https://wa.me/5521959067974" target="_blank" class="btn-primary">
+                    <i class="fa-brands fa-whatsapp"></i> Iniciar Conexão
+                </a>
+                <a href="#essencia" class="btn-secondary">Saber Mais</a>
+            </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+            <div class="hero-image-card">
+                <img src="input_file_1.png" alt="coneXconfi Brand" class="main-logo-display">
+                <div class="hero-card-stats">
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Compromisso com a Qualidade</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>RJ</h4>
+                        <p>Atuação Regional Estratégica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESSÊNCIA / SOBRE -->
+    <section class="section-padding about-section" id="essencia">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="tag">Nossa Essência</span>
+                    <h2>A Conexão que Transforma Negócios</h2>
+                    <p>
+                        Na <strong>coneXconfi</strong>, entendemos que o coração de qualquer empreendimento de sucesso é a qualidade das relações que ele cultiva. Não oferecemos apenas serviços; construímos um ecossistema pautado na integridade e na alta performance corporativa.
+                    </p>
+                    <p>
+                        Nossa missão é aproximar visionários a soluções eficientes, garantindo que cada parceria seja respaldada por sólida credibilidade e alinhamento estratégico.
+                    </p>
+                    <div class="highlight-box">
+                        <p>"Confiança não se impõe, se constrói através de entregas consistentes e parcerias transparentes."</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; text-align: center;">
+                        <i class="fa-solid fa-handshake-angle" style="font-size: 4rem; color: var(--accent-gold); margin-bottom: 1.5rem;"></i>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem;">Unindo Pontas Estratégica e Transparentemente</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Garantindo a melhor experiência e segurança em cada prestação de serviço.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PILARES -->
+    <section class="section-padding" id="pilares">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Nossos Pilares</span>
+                <h2>Fundamentos da coneXconfi</h2>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3>Confiança Inabalável</h3>
+                    <p>Processos rigorosos e alinhamento ético para garantir total segurança jurídica e operacional em todas as etapas da sua parceria.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3>Redes de Conexão</h3>
+                    <p>Aproximação assertiva de empreendedores a parceiros e clientes alinhados aos mesmos valores e objetivos de crescimento.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3>Qualidade Superior</h3>
+                    <p>Padrão de excelência mantido de forma contínua, com foco na otimização de resultados e satisfação plena dos envolvidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="section-padding testimonials-section" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Prova Social</span>
+                <h2>O que dizem nossos Parceiros</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"A parceria com a coneXconfi elevou o patamar de confiabilidade da minha empresa no mercado do Rio de Janeiro. Transparência impecável!"</p>
+                    <div class="author-info">
+                        <div class="author-avatar">M</div>
+                        <div class="author-details">
+                            <h4>Matheus Calixto</h4>
+                            <span>Empreendedor de Serviços</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Encontrar uma rede que realmente preza pelo profissionalismo e conexões reais transformou o ritmo de expansão do nosso negócio."</p>
+                    <div class="author-info">
+                        <div class="author-avatar">R</div>
+                        <div class="author-details">
+                            <h4>Roberto Silva</h4>
+                            <span>Parceiro Estratégico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="section-padding" style="text-align: center; background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-surface) 100%);">
+        <div class="container">
+            <h2 style="font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 1rem;">Pronto para Elevar o Nível do seu Negócio?</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Entre em contato conosco hoje mesmo e descubra como podemos fortalecer a sua presença corporativa.</p>
+            <a href="https://wa.me/5521959067974" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.2rem;">
+                <i class="fa-brands fa-whatsapp"></i> Conversar com a coneXconfi
+            </a>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo-container">
+                        <img src="input_file_0.png" alt="coneXconfi Logo" class="logo-img">
+                        <span class="brand-name">cone<span>X</span>confi</span>
+                    </a>
+                    <p>Construindo conexões de confiança e impulsionando negócios através da credibilidade e prestação de serviços de excelência.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navegação</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#essencia">A Essência</a></li>
+                        <li><a href="#pilares">Pilares</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contato</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Rio de Janeiro - RJ</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>(21) 95906-7974</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>conexconfi@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-globe"></i>
+                            <span>www.conexconfi.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 coneXconfi. Todos os direitos reservados. Conexão de Confiança.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5521959067974" target="_blank" class="whatsapp-float" title="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPT DE NAVEGAÇÃO -->
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
